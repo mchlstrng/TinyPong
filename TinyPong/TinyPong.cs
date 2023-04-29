@@ -6,15 +6,24 @@ namespace TinyPong
 {
     public class TinyPong : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public GraphicsDeviceManager Graphics { get; set; }
+        public SpriteBatch SpriteBatch { get; set; }
+        public KeyboardManager KeyboardManager { get; set; }
+        public MainMenuScreen MainMenuScreen { get; set; }
+
 
         /// <summary>
         /// This is the constructor for the game.
         /// </summary>
         public TinyPong()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
+
+            //set resolution suitable for a pong game
+            Graphics.PreferredBackBufferWidth = 800;
+            Graphics.PreferredBackBufferHeight = 480;
+            Graphics.ApplyChanges();
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -25,6 +34,8 @@ namespace TinyPong
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            MainMenuScreen = new MainMenuScreen(this);
+            KeyboardManager = new KeyboardManager();
 
             base.Initialize();
         }
@@ -36,9 +47,9 @@ namespace TinyPong
         /// </summary>
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            MainMenuScreen.LoadContent(Content);
+            MainMenuScreen.SetupMenuItems();
         }
 
         /// <summary>
@@ -65,6 +76,9 @@ namespace TinyPong
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here. 
+            SpriteBatch.Begin();
+            MainMenuScreen.Draw();
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }
