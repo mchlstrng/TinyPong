@@ -1,3 +1,3 @@
 ﻿
-using var game = new TinyPong.Game1();
+using var game = new TinyPong.TinyPong();
 game.Run();
