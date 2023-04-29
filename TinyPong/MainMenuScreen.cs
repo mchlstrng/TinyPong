@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TinyPong;
 
-public class MainMenuScreen : IActiveGameScreen
+public partial class MainMenuScreen : IActiveGameScreen
 {
     private readonly TinyPong _tinyPong;
     public SpriteFont SpriteFont { get; set; }
