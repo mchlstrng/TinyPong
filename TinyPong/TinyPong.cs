@@ -10,7 +10,7 @@ namespace TinyPong
         public SpriteBatch SpriteBatch { get; set; }
         public KeyboardManager KeyboardManager { get; set; }
         public MainMenuScreen MainMenuScreen { get; set; }
-
+        public GameTime GameTime { get; set; }
 
         /// <summary>
         /// This is the constructor for the game.
@@ -62,6 +62,9 @@ namespace TinyPong
                 Exit();
 
             // TODO: Add your update logic here
+            GameTime = gameTime;
+            KeyboardManager.Update();
+            MainMenuScreen.Update();
 
             base.Update(gameTime);
         }
