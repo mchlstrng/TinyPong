@@ -91,6 +91,21 @@ public class MainMenuScreen
             }
             _menuItems[nextMenuItemIndex].IsSelected = true;
         }
+
+        //start game on enter
+        if (_tinyPong.KeyboardManager.IsKeyPressed(Keys.Enter))
+        {
+            var selectedMenuItem = _menuItems.Find(x => x.IsSelected);
+            if (selectedMenuItem.Text == "Play")
+            {
+                _tinyPong.MainMenuScreen = null;
+            }
+            else if (selectedMenuItem.Text == "Exit")
+            {
+                _tinyPong.Exit();
+            }
+        }
+
     }
 
 }
