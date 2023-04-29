@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +12,8 @@ namespace TinyPong
         public KeyboardManager KeyboardManager { get; set; }
         public IActiveGameScreen ActiveGameScreen { get; set; }
         public GameTime GameTime { get; set; }
+        public IScreenFactory ScreenFactory { get; set; }
+        public ContentManager ContentManager { get; set; }
 
         /// <summary>
         /// This is the constructor for the game.
@@ -36,6 +39,8 @@ namespace TinyPong
             // TODO: Add your initialization logic here
             ActiveGameScreen = new MainMenuScreen(this);
             KeyboardManager = new KeyboardManager();
+            ScreenFactory = new ScreenFactory(this);
+            ContentManager = Content;
 
             base.Initialize();
         }
@@ -48,7 +53,7 @@ namespace TinyPong
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            ActiveGameScreen.LoadContent(Content);
+            ActiveGameScreen.LoadContent();
             ActiveGameScreen.SetupMenuItems();
         }
 

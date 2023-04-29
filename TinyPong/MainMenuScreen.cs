@@ -18,9 +18,9 @@ public partial class MainMenuScreen : IActiveGameScreen
         _tinyPong = tinyPong;
     }
 
-    public void LoadContent(ContentManager contentManager)
+    public void LoadContent()
     {
-        SpriteFont = contentManager.Load<SpriteFont>("menufont");
+        SpriteFont = _tinyPong.ContentManager.Load<SpriteFont>("menufont");
     }
 
     public void Draw()
@@ -98,7 +98,7 @@ public partial class MainMenuScreen : IActiveGameScreen
             var selectedMenuItem = _menuItems.Find(x => x.IsSelected);
             if (selectedMenuItem.Text == "Play")
             {
-                _tinyPong.ActiveGameScreen = null;
+                _tinyPong.ActiveGameScreen = _tinyPong.ScreenFactory.CreateScreen(ScreenType.Gameplay);
             }
             else if (selectedMenuItem.Text == "Exit")
             {

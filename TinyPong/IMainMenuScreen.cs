@@ -6,7 +6,7 @@ namespace TinyPong
     public interface IActiveGameScreen
     {
         void Draw();
-        void LoadContent(ContentManager contentManager);
+        void LoadContent();
         void SetupMenuItems();
         void Update();
 
