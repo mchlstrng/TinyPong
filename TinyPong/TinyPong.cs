@@ -9,7 +9,7 @@ namespace TinyPong
         public GraphicsDeviceManager Graphics { get; set; }
         public SpriteBatch SpriteBatch { get; set; }
         public KeyboardManager KeyboardManager { get; set; }
-        public MainMenuScreen MainMenuScreen { get; set; }
+        public IActiveGameScreen ActiveGameScreen { get; set; }
         public GameTime GameTime { get; set; }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace TinyPong
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            MainMenuScreen = new MainMenuScreen(this);
+            ActiveGameScreen = new MainMenuScreen(this);
             KeyboardManager = new KeyboardManager();
 
             base.Initialize();
@@ -48,8 +48,8 @@ namespace TinyPong
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            MainMenuScreen.LoadContent(Content);
-            MainMenuScreen.SetupMenuItems();
+            ActiveGameScreen.LoadContent(Content);
+            ActiveGameScreen.SetupMenuItems();
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace TinyPong
             // TODO: Add your update logic here
             GameTime = gameTime;
             KeyboardManager.Update();
-            MainMenuScreen.Update();
+            ActiveGameScreen.Update();
 
             base.Update(gameTime);
         }
@@ -80,7 +80,7 @@ namespace TinyPong
 
             // TODO: Add your drawing code here. 
             SpriteBatch.Begin();
-            MainMenuScreen.Draw();
+            ActiveGameScreen.Draw();
             SpriteBatch.End();
 
             base.Draw(gameTime);

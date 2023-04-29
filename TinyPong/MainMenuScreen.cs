@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TinyPong;
 
-public class MainMenuScreen
+public class MainMenuScreen : IActiveGameScreen
 {
     private readonly TinyPong _tinyPong;
     public SpriteFont SpriteFont { get; set; }
@@ -98,14 +98,12 @@ public class MainMenuScreen
             var selectedMenuItem = _menuItems.Find(x => x.IsSelected);
             if (selectedMenuItem.Text == "Play")
             {
-                _tinyPong.MainMenuScreen = null;
+                _tinyPong.ActiveGameScreen = null;
             }
             else if (selectedMenuItem.Text == "Exit")
             {
                 _tinyPong.Exit();
             }
         }
-
     }
-
 }
