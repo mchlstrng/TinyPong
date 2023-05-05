@@ -18,11 +18,17 @@ public partial class MainMenuScreen : IActiveGameScreen
         _tinyPong = tinyPong;
     }
 
+    /// <summary>
+    /// This is called when the game should load all content.
+    /// </summary>
     public void LoadContent()
     {
         SpriteFont = _tinyPong.ContentManager.Load<SpriteFont>("menufont");
     }
 
+    /// <summary>
+    /// This is called when the game should draw itself.
+    /// </summary>
     public void Draw()
     {
 
@@ -41,6 +47,9 @@ public partial class MainMenuScreen : IActiveGameScreen
         }
     }
 
+    /// <summary>
+    /// This is called when the game should setup the menu items.
+    /// </summary>
     public void SetupMenuItems()
     {
         var viewportCenterX = GetViewportCenterX();
@@ -61,12 +70,20 @@ public partial class MainMenuScreen : IActiveGameScreen
         _menuItems.Add(exitMenuItem);
     }
 
+
+    /// <summary>
+    /// Gets the center of the viewport on the X axis.
+    /// </summary>
+    /// <returns></returns>
     private float GetViewportCenterX()
     {
         var viewportCenterX = _tinyPong.Graphics.GraphicsDevice.Viewport.Width / 2f;
         return viewportCenterX;
     }
 
+    /// <summary>
+    /// This is called when the game should update itself.
+    /// </summary>
     public void Update()
     {
         var previousMenuItem = _menuItems.Find(x => x.IsSelected);
