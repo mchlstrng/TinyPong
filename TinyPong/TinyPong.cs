@@ -13,7 +13,7 @@ namespace TinyPong
         public IActiveGameScreen ActiveGameScreen { get; set; }
         public GameTime GameTime { get; set; }
         public IScreenFactory ScreenFactory { get; set; }
-        public ContentManager ContentManager { get; set; }
+        public IContentManager ContentManager { get; set; }
 
         /// <summary>
         /// This is the constructor for the game.
@@ -37,10 +37,6 @@ namespace TinyPong
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            ActiveGameScreen = new MainMenuScreen(this);
-            KeyboardManager = new KeyboardManager();
-            ScreenFactory = new ScreenFactory(this);
-            ContentManager = Content;
 
             base.Initialize();
         }
